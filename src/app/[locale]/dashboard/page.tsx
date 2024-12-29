@@ -7,6 +7,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { getCurrentUser, logout as signOutUser } from "@/lib/firebase/auth"; // Firebase helpers
 import { withAuth } from "@/components/hoc/withAuth";
 import { LoadingScreen } from "@/components/utilities/Loader";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ShoppingBag, Users, Menu, GitBranch } from 'lucide-react'
 
 const DashboardPage = () => {
   const t = useTranslations("DashboardPage");
@@ -49,36 +51,46 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-600 text-white py-4 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-semibold">{t("title")}</h1>
-          <button
-            onClick={handleSignOut}
-            className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-md"
-          >
-            {t("logout")}
-          </button>
-        </div>
-      </header>
-
-      <main className="container mx-auto py-6">
-        <h2 className="text-2xl font-semibold mb-4">{t("welcome", { name: user?.displayName || user?.email })}</h2>
-        <p>{t("instructions")}</p>
-
-        {/* Example dynamic content */}
-        <div className="mt-6 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Replace these with your dynamic dashboard widgets */}
-          <div className="p-4 bg-white rounded-md shadow-md">
-            <h3 className="text-lg font-medium">{t("widget1.title")}</h3>
-            <p>{t("widget1.description")}</p>
-          </div>
-          <div className="p-4 bg-white rounded-md shadow-md">
-            <h3 className="text-lg font-medium">{t("widget2.title")}</h3>
-            <p>{t("widget2.description")}</p>
-          </div>
-        </div>
-      </main>
+    <div>
+      <h2 className="text-3xl font-bold mb-6">Dashboard Overview</h2>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+            <ShoppingBag className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">254</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Registered Users</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">1,234</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Menu Items</CardTitle>
+            <Menu className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">45</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Branches</CardTitle>
+            <GitBranch className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">3</div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
