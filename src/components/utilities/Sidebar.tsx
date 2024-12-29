@@ -2,18 +2,20 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Menu, GitBranch, Users, ShoppingBag, Globe, Smartphone, Coffee, X } from 'lucide-react'
+import { Home, Salad, Settings, GitBranch, Users, ShoppingBag, Globe, Smartphone, Coffee, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 const sidebarItems = [
   { name: 'Home', href: '/dashboard', icon: Home },
-  { name: 'Menu', href: '/dashboard/menu', icon: Menu },
+  { name: 'Menu', href: '/dashboard/menu', icon: Salad },
   { name: 'Branches', href: '/dashboard/branches', icon: GitBranch },
   { name: 'Registered Users', href: '/dashboard/users', icon: Users },
   { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
   { name: 'Website', href: '/dashboard/website', icon: Globe },
   { name: 'App', href: '/dashboard/app', icon: Smartphone },
   { name: 'Restaurant Manager', href: '/dashboard/manager', icon: Coffee },
+  { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+
 ]
 
 interface SidebarProps {
@@ -53,7 +55,7 @@ export default function Sidebar({ open, setOpen }: SidebarProps) {
           {sidebarItems.map((item) => (
             <Link key={item.name} href={item.href}>
               <span className={`flex items-center space-x-2 py-2.5 px-4 rounded transition duration-200 ${
-                pathname === item.href ? 'bg-gray-700' : 'hover:bg-gray-700'
+                pathname.endsWith(item.href) ? 'bg-gray-700' : 'hover:bg-gray-700'
               }`}>
                 <item.icon className="h-5 w-5" />
                 <span>{item.name}</span>

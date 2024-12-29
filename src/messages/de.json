@@ -33,18 +33,38 @@
     }
   },
   "DashboardPage": {
-    "title": "Armaturenbrett",
-    "loading": "Lädt Ihr Armaturenbrett...",
-    "logout": "Abmelden",
-    "welcome": "Willkommen, {name}!",
-    "instructions": "Hier finden Sie eine Übersicht über Ihr Konto und Ihre Aktivitäten.",
-    "widget1": {
-      "title": "Ihr Profil",
-      "description": "Verwalten Sie Ihre Kontoinformationen und Einstellungen."
+    "home": "Home",
+    "total_orders": "Total Orders",
+    "registered_users": "Registered Users",
+    "menu_items": "Menu Items",
+    "branches": "Branches",
+    "settings": "Settings",
+    "appPage": {
+
     },
-    "widget2": {
-      "title": "Letzte Aktivität",
-      "description": "Sehen Sie sich Ihre letzten Aktionen und Updates an."
+    "settingsPage": {
+      "settings": "Settings",
+      "payment_plan": "Peyment Plan",
+      "your_current_plan_is": "Your Current Plan Is",
+      "basic": "Basic",
+      "pro": "Pro",
+      "upgrade_plan": "Upgrade Plan",
+      "account_settings": "Account Settings",
+      "name": "Name",
+      "save_changes": "Save Changes",
+      "domain_settings": "Domain Settings",
+      "custom_domain": "Custom Domain",
+      "update_domain": "Update Domain",
+      "account_actions": "Account Actions",
+      "change_password": "Change Password",
+      "enter_your_current_and_new_password": "Enter your current password and a new password to change it.",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "change_email": "Change Email",
+      "new_email": "New Email",
+      "enter_your_email_address": "Enter your new email address",
+      "logout": "Logout"
     }
   },
   "ForgotPasswordPage": {

@@ -9,12 +9,13 @@ import { withAuth } from "@/components/hoc/withAuth";
 import { LoadingScreen } from "@/components/utilities/Loader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ShoppingBag, Users, Menu, GitBranch } from 'lucide-react'
+import { useAppContext } from "@/components/context/AppContext";
 
 const DashboardPage = () => {
   const t = useTranslations("DashboardPage");
   const locale = useLocale();
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const { setUser } = useAppContext();
   const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -26,7 +27,6 @@ const DashboardPage = () => {
                 setUser(currentUser);
               }
           } catch (err) {
-              console.error(err);
               router.push('/sign-in'); // Redirect on error
           } 
           finally {
@@ -37,26 +37,19 @@ const DashboardPage = () => {
         fetchUser();
     }, [router, locale]);
 
-  const handleSignOut = async () => {
-    await signOutUser();
-    router.push('/sign-in'); // Redirect after logout
-  };
-
   if (loading) {
     return (
-      // <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <LoadingScreen />
-      // </div>
     );
   }
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-6">Dashboard Overview</h2>
+      <h2 className="text-3xl font-bold mb-6">{t('home')}</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("total_orders")}</CardTitle>
             <ShoppingBag className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -65,7 +58,7 @@ const DashboardPage = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Registered Users</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("registered_users")}</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -74,7 +67,7 @@ const DashboardPage = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Menu Items</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("menu_items")}</CardTitle>
             <Menu className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -83,7 +76,7 @@ const DashboardPage = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Branches</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("branches")}</CardTitle>
             <GitBranch className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>

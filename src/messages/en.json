@@ -1,8 +1,4 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
-  },
   "SignupPage": {
     "title": "Create an Account",
     "fields": {
@@ -18,6 +14,7 @@
     "alreadyHaveAccount": "Already have an account?",
     "loginLink": "Log in"
   },
+
   "LoginPage": {
     "title": "Sign in to your account",
     "fields": {
@@ -33,21 +30,43 @@
     },
     "forgotPassword": "Forgot Password?"
   },
+
   "DashboardPage": {
-    "title": "Dashboard",
-    "loading": "Loading your dashboard...",
-    "logout": "Sign Out",
-    "welcome": "Welcome, {name}!",
-    "instructions": "Here's an overview of your account and activity.",
-    "widget1": {
-      "title": "Your Profile",
-      "description": "Manage your account information and preferences."
+    "home": "Home",
+    "total_orders": "Total Orders",
+    "registered_users": "Registered Users",
+    "menu_items": "Menu Items",
+    "branches": "Branches",
+    "settings": "Settings",
+    "appPage": {
+
     },
-    "widget2": {
-      "title": "Recent Activity",
-      "description": "View your latest actions and updates."
+    "settingsPage": {
+      "settings": "Settings",
+      "payment_plan": "Peyment Plan",
+      "your_current_plan_is": "Your Current Plan Is",
+      "basic": "Basic",
+      "pro": "Pro",
+      "upgrade_plan": "Upgrade Plan",
+      "account_settings": "Account Settings",
+      "name": "Name",
+      "save_changes": "Save Changes",
+      "domain_settings": "Domain Settings",
+      "custom_domain": "Custom Domain",
+      "update_domain": "Update Domain",
+      "account_actions": "Account Actions",
+      "change_password": "Change Password",
+      "enter_your_current_and_new_password": "Enter your current password and a new password to change it.",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "change_email": "Change Email",
+      "new_email": "New Email",
+      "enter_your_email_address": "Enter your new email address",
+      "logout": "Logout"
     }
   },
+
   "ForgotPasswordPage": {
     "title": "Reset Password",
     "fields": {

@@ -8,7 +8,6 @@ import { Link, useRouter } from "@/i18n/routing";
 
 const SignupPage = () => {
   const t = useTranslations("SignupPage");
-  const locale = useLocale(); 
   const router = useRouter();
 
   const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
