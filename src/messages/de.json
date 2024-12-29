@@ -8,7 +8,8 @@
     "fields": {
       "email": "E-Mail-Adresse",
       "password": "Passwort",
-      "confirmPassword": "Passwort bestätigen"
+      "confirmPassword": "Passwort bestätigen",
+      "name": "name"
     },
     "errors": {
       "passwordMismatch": "Die Passwörter stimmen nicht überein."

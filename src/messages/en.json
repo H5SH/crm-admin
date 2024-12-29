@@ -4,7 +4,8 @@
     "fields": {
       "email": "Email Address",
       "password": "Password",
-      "confirmPassword": "Confirm Password"
+      "confirmPassword": "Confirm Password",
+      "name": "name"
     },
     "errors": {
       "passwordMismatch": "Passwords do not match."

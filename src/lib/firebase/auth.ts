@@ -1,5 +1,6 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, sendEmailVerification, User, UserCredential } from "firebase/auth";
-import { auth } from "./config";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, sendEmailVerification, User, UserCredential, updateCurrentUser } from "firebase/auth";
+import { auth, firestore } from "./config";
+import { addDoc, collection, doc } from "firebase/firestore";
 
 
 export const SignIn = async (email: string, password: string): Promise<UserCredential> => {
@@ -11,11 +12,17 @@ export const SignIn = async (email: string, password: string): Promise<UserCrede
     }
 };
 
-export const SignUp = async (email: string, password: string) => {
+export const SignUp = async (email: string, password: string, name: string) => {
     try {
-        const response = await createUserWithEmailAndPassword(auth, email, password);
-        await sendVerificationEmail(response.user);
-        return response;
+        const {user} = await createUserWithEmailAndPassword(auth, email, password);
+        sendVerificationEmail(user);
+        updateCurrentUser(auth, {...user, displayName: name})
+        addDoc(collection(firestore, "users"), {
+            createdAt: new Date().toISOString(),
+            role: 'resturant_admin',
+            name: name,
+            email: email
+        })
     } catch (error) {
         throw error;
     }

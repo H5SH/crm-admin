@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
-import { getCurrentUser, logout as signOutUser } from "@/lib/firebase/auth"; // Firebase helpers
+import auth, { getCurrentUser, logout as signOutUser } from "@/lib/firebase/auth"; // Firebase helpers
 import { withAuth } from "@/components/hoc/withAuth";
 import { LoadingScreen } from "@/components/utilities/Loader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

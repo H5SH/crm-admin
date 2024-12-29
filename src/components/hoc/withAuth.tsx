@@ -7,6 +7,9 @@ import { User } from "firebase/auth";
 import { LoadingScreen } from "../utilities/Loader";
 import { useLocale } from "next-intl";
 import { useAppContext } from "../context/AppContext";
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "@/lib/firebase/config";
+import { UserModal } from "../modals/utilities";
 
 export function withAuth(Component: React.ComponentType) {
   return function ProtectedRoute(props: any) {
@@ -16,8 +19,10 @@ export function withAuth(Component: React.ComponentType) {
     const { setUser } = useAppContext()
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChange((user: User | null) => {
-        if (!user) {
+      const unsubscribe = onAuthStateChange(async (user: User | null) => {
+        const _user = await getDoc(doc(firestore, `users/${user?.uid}`))
+        const userData: UserModal | undefined = _user.data()
+        if (!user && userData?.role !== "resturant_admin") {
           router.push('/sign-in')
         } else {
           setLoading(false)

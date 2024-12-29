@@ -10,7 +10,7 @@ const SignupPage = () => {
   const t = useTranslations("SignupPage");
   const router = useRouter();
 
-  const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
+  const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "", name: ""});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,28 +18,39 @@ const SignupPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const { email, password, confirmPassword } = formData;
-
+  function validation(){
+    const { email, password, confirmPassword, name } = formData;
     if (password !== confirmPassword) {
       setError(t("errors.passwordMismatch"));
-      return;
+      return false;
+    }else if(!email){
+      setError(t("errors.email_required"))
+      return false;
+    }else if(!name){
+      setError(t("error.name_required"))
+      return false
     }
+    setError("")
+    return true
+  }
 
-    try {
-      setLoading(true);
-      setError(null);
-
-      await SignUp(email, password);
-
-      router.push('/sign-in');
-    } catch (err: unknown) {
-      const error = err as Error;
-      setError(error.message);
-    } finally {
-      setLoading(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { email, password, name } = formData;
+    if(validation()){
+      try {
+        setLoading(true);
+        setError(null);
+  
+        await SignUp(email, password, name);
+  
+        router.push('/sign-in');
+      } catch (err: unknown) {
+        const error = err as Error;
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -62,6 +73,20 @@ const SignupPage = () => {
               name="email"
               type="email"
               value={formData.email}
+              onChange={handleChange}
+              className="w-full mt-1 px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              {t("fields.name")}
+            </label>
+            <input
+              id="email"
+              name="name"
+              type="text"
+              value={formData.name}
               onChange={handleChange}
               className="w-full mt-1 px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               required
